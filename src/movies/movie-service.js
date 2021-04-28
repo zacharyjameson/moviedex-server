@@ -21,5 +21,10 @@ const MovieService = {
       return knex("moviedex_movies").where({ id }).delete();
   },
 
-  clearAllMovies(knex,)
+  clearAllMovies(knex){
+      return knex("moviedex_movies").truncate();
+  }
+  
 };
+
+module.exports = MovieService; 
