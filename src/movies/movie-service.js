@@ -22,7 +22,7 @@ const MovieService = {
   },
 
   clearAllMovies(knex){
-      return knex("moviedex_movies").truncate();
+      return knex.raw("TRUNCATE TABLE moviedex_movies RESTART IDENTITY CASCADE");
   }
   
 };
