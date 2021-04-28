@@ -43,6 +43,12 @@ movieRouter
           .json(serializeMovie(movie));
       })
       .catch(next);
+  })
+  .delete((req, res, next) => {
+    const knexInstance = req.app.get("db");
+    MovieService.clearAllMovies(knexInstance).then((numRowsAffected) => {
+      res.status(204).end();
+    });
   });
 
 movieRouter
@@ -71,12 +77,6 @@ movieRouter
         res.status(204).end();
       })
       .catch(next);
-  })
-  .delete((req, res, next) => {
-    const knexInstance = req.app.get("db");
-    MovieService.clearAllMovies(knexInstance).then((numRowsAffected) => {
-      res.status(204).end();
-    });
   });
 
   module.exports = movieRouter;

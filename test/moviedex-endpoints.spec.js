@@ -87,4 +87,49 @@ describe("Movies Endpoints", () => {
       });
     });
   });
+
+  describe(`DELETE /api/movies/:movie_id`, () => {
+    context(`Given no movies in the database`, () => {
+      it(`responds with 404`, () => {
+        const movieId = 123456;
+
+        return supertest(app)
+          .delete(`/api/movies/${movieId}`)
+          .expect(404, { error: { message: `Movie doesn't exist` } });
+      });
+    });
+
+    context(`Given there are movies in the database`, () => {
+      const testMovies = makeMovieArray();
+
+      beforeEach("insert movie", () => {
+        return db.into("moviedex_movies").insert(testMovies);
+      });
+
+      it(`responds with 204 and then removes the movie`, () => {
+        const movieToRemove = 2;
+        const expectedMovie = testMovies.filter(
+          (movie) => movie.id !== movieToRemove
+        );
+
+        return supertest(app)
+          .delete(`/api/movies/${movieToRemove}`)
+          .expect(204)
+          .then((res) => {
+            supertest(app).get("/api/movies").expect(expectedMovie);
+          });
+      });
+
+      it(`responds with 204, removes all movies and returns an empty array`, () => {
+        const expectNoMovies = [];
+
+        return supertest(app)
+          .delete(`/api/movies`)
+          .expect(204)
+          .then((res) => {
+            supertest(app).get("/api/movies").expect(expectNoMovies);
+          });
+      });
+    });
+  });
 });
