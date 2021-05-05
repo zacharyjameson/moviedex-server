@@ -1,26 +1,34 @@
-# Express Boilerplate!
+# Moviedex-Server
 
-This is a boilerplate project used for starting new projects!
+## Summary:
 
-## Set up
+Moviedex-Server is a server-side build that supports a client side React web application, [Moviedex](https://github.com/zacharyjameson/moviedex-client). Moviedex-Server was deployed using Heroku.
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## Technology:
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+Moviedex was made using a server-side program that can be found here:
+* [Moviedex-client](https://github.com/zacharyjameson/moviedex-client)
 
-## Scripts
+Technology Used:
+* PostgreSQL
+* Node.js
+* Express
+* Heroku
 
-Start the application `npm start`
+## Live Version:
 
-Start nodemon for the application `npm run dev`
+[Moviedex](https://moviedex-client.vercel.app/)
 
-Run the tests `npm test`
+## Screenshots
 
-## Deploying
+### Home Page
+![Home Page](src/images/homepage.png)
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's main branch.
+### Find Movies Page
+![Find Movies](src/images/findmovies.png)
+
+### My List Page
+![My List](src/images/mylist.png) 
+
+### Randomizer Page
+![Randomizer](src/images/randomizer.png)
